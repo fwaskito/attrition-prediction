@@ -1,6 +1,6 @@
 {% extends "base3.html" %}
 
-{% block title %}Data Prediksi Atrisi Karyawan{% endblock %}
+{% block title %}Attrition Prediction Data{% endblock %}
 
 {% block content %}
 <div class="container-fluid">
@@ -9,24 +9,24 @@
             <div class="data_table">
                 <div class="row align-items-end">
                     <div class="p-2 ps-3 col-md-2 col-4 border shadow-sm">
-                        <small><b>Pengguna</b>: {{ session.get('user')['name'] }}</small></br>
-                        <small><b>Anda login sebagai</b>: {{ session.get('user')['type'] }}</small>
+                        <small><b>User</b>: {{ session.get('user')['name'] }}</small></br>
+                        <small><b>Role</b>: {{ session.get('user')['type'] }}</small>
                     </div>
                     <div class="col text-center">
-                        <h4><b>Data Prediksi Atrisi</b></h4>
+                        <h4><b>Attrition Prediction Data</b></h4>
                     </div>
 
                     <div class="col-3 d-flex justify-content-end">
                         <div class="row">
                             <div class="col">
-                                <form action="/prediksi" method="POST">
+                                <form action="/prediction/predict" method="POST">
                                     <input type="hidden" name="predict_type" value="many">
                                     <input class="btn btn-primary btn-sm shadow-sm" type="submit"
                                         value="Prediksi Semua">
                                 </form>
                             </div>
                             <div class="col">
-                                <form action="/simpanprediksi" method="POST">
+                                <form action="/prediction/save" method="POST">
                                     <input type="hidden" name="predict_type" value="many">
                                     <input class="btn btn-secondary btn-sm shadow-sm" type="submit"
                                         value="Simpan Prediksi">
@@ -43,7 +43,7 @@
                             <thead>
                                 <tr class="">
                                     <th>ID</th>
-                                    <th>Prediksi Atisi</th>
+                                    <th>Attirion Prediction</th>
                                     <th>Age</th>
                                     <th>Department</th>
                                     <th>DFH</th>
@@ -93,7 +93,7 @@
 
                                     {% else %}
                                     <td class="table table-light">
-                                        <form action="/prediksi" method="POST">
+                                        <form action="/prediction/predict" method="POST">
                                             <input type="hidden" name="predict_type" value="single">
                                             <input type="hidden" name="id" value="{{employee.id}}">
                                             <input class="btn btn-outline-primary btn-sm" type="submit" value="Prediksi">
@@ -102,7 +102,7 @@
                                     {% endif %}
                                     {% else %}
                                     <td>
-                                        <form action="/prediksi" method="POST">
+                                        <form action="/prediction/predict" method="POST">
                                             <input type="hidden" name="predict_type" value="single">
                                             <input type="hidden" name="id" value="{{employee.id}}">
                                             <input class="btn btn-outline-primary btn-sm" type="submit" value="Prediksi">
@@ -143,7 +143,7 @@
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">
                     <font style="color: green;"><i class="fa-solid fa-circle-check"></i>
-                        &ensp; Aksi Berhasil.</font>
+                        &ensp;Action succeeded.</font>
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
