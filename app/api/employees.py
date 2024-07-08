@@ -51,11 +51,26 @@ def edit_employee():
     query = 'update_employee'
     conn = db().get_connection()
     cursor = conn.cursor()
-    cursor.callproc(query,values)
+    cursor.callproc(query, values)
     conn.commit()
 
     cursor.close()
     conn.close()
 
     flash(_id + '\'s data sucessfully updated.')
+    return redirect(url_for('api.employees'))
+
+@bp.route('/employees/delete', methods=['POST'])
+def deleteData():
+    _id = request.form.get('id')
+    query = 'delete_employee'
+    conn = db().get_connection()
+    cursor = conn.cursor()
+    cursor.callproc(query, [_id,])
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+
+    flash('Employee' + _id + ' sucessfully deleted.')
     return redirect(url_for('api.employees'))
