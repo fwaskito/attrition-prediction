@@ -6,3 +6,4 @@ from app.api import main
 from app.api import authentication
 from app.api import employees
 from app.api import employees_history
+from app.api import prediction
