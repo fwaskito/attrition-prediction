@@ -22,14 +22,14 @@
                                 <form action="/prediction/predict" method="POST">
                                     <input type="hidden" name="predict_type" value="many">
                                     <input class="btn btn-primary btn-sm shadow-sm" type="submit"
-                                        value="Prediksi Semua">
+                                        value="Predict All">
                                 </form>
                             </div>
                             <div class="col">
                                 <form action="/prediction/save" method="POST">
-                                    <input type="hidden" name="predict_type" value="many">
+                                    <input type="hidden" name="predict_type" value="save">
                                     <input class="btn btn-secondary btn-sm shadow-sm" type="submit"
-                                        value="Simpan Prediksi">
+                                        value="Save Predictions">
                                 </form>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                                         <form action="/prediction/predict" method="POST">
                                             <input type="hidden" name="predict_type" value="single">
                                             <input type="hidden" name="id" value="{{employee.id}}">
-                                            <input class="btn btn-outline-primary btn-sm" type="submit" value="Prediksi">
+                                            <input class="btn btn-outline-primary btn-sm" type="submit" value="Predict">
                                         </form>
                                     </td class="table table-light">
                                     {% endif %}
