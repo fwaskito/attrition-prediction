@@ -1,0 +1,55 @@
+.data_table{
+	background: #fff;
+	padding: 15px;
+}
+.data_table .btn{
+	padding: 5px 10px;
+	margin-top: 10px;
+}
+.table-title {
+	padding-bottom: 10px;
+	margin: 0 0 10px;
+}
+.table-title h2 {
+	margin: 6px 0 0;
+	font-size: 22px;
+}
+.table-title .add-new {
+	float: right;
+	height: 30px;
+	font-weight: bold;
+	font-size: 12px;
+	text-shadow: none;
+	min-width: 100px;
+	border-radius: 50px;
+	line-height: 13px;
+}
+table.table {
+	table-layout: fixed;
+}
+table.dataTable th {
+	font-size: 0.75em;
+}
+table.dataTable td {
+	font-size: 0.75em;
+}
+table.table td a {
+	cursor: pointer;
+	display: inline-block;
+}
+table.table td a.editMuch {
+	color: #0275d8 ;
+}
+table.table td a.edit {
+	color: #0275d8 ;
+}
+table.table td a.delete {
+	color: #d9534f;
+}
+table.table .form-control.error {
+	border-color: #f50000;
+}
+table.table td .add {
+	display: none;
+}
+
