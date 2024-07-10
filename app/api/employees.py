@@ -26,19 +26,9 @@ def employees():
 
 @bp.route("/employees/edit", methods=["POST"])
 def edit_employee():
-    id = request.form.get("id")
+    id_ = request.form.get("id")
     age = request.form.get("age")
-    # ---- convert foreign key -----------------
-    departmant = request.form.get("department")
-    department_id = ""
-
-    if departmant.lower() == "research & development":
-        department_id = "DP1"
-    elif departmant.lower() == "sales":
-        department_id = "DP2"
-    else:
-        department_id = "DP3"
-    # ------------------------------------------
+    department_id = request.form.get("department_id")
     dist_from_home = request.form.get("dist_from_home")
     edu = request.form.get("edu")
     edu_field = request.form.get("edu_field")
@@ -63,7 +53,7 @@ def edit_employee():
         salary,
         wlb,
         years_at_comp,
-        id,
+        id_,
     ]
 
     query = "update_employee"
@@ -75,29 +65,29 @@ def edit_employee():
     cursor.close()
     conn.close()
 
-    flash(id + "'s data sucessfully updated.")
+    flash("Employee " + id_ + "'s data sucessfully updated.")
     return redirect(url_for("api.employees"))
 
 
 @bp.route("/employees/delete", methods=["POST"])
 def deleteData():
-    _id = request.form.get("id")
+    id_ = request.form.get("id")
     query = "delete_employee"
     conn = db().get_connection()
     cursor = conn.cursor()
-    cursor.callproc(query, [_id])
+    cursor.callproc(query, [id_])
     conn.commit()
 
     cursor.close()
     conn.close()
 
-    flash("Employee " + _id + " sucessfully deleted.")
+    flash("Employee " + id_ + " sucessfully deleted.")
     return redirect(url_for("api.employees"))
 
 
 @bp.route("/employees/add", methods=["POST"])
 def add_employee():
-    id = session.get("new_id")
+    id_ = session.get("new_id")
     attrition = "No"
     age = request.form.get("age")
     department_id = request.form.get("department_id")
@@ -113,7 +103,7 @@ def add_employee():
     years_at_comp = request.form.get("years_at_comp")
 
     values = [
-        id,
+        id_,
         attrition,
         age,
         department_id,
@@ -139,5 +129,5 @@ def add_employee():
     conn.close()
 
     session["new_id"] = None
-    flash("Employee " + id + " sucessfully added.")
+    flash("Employee " + id_ + " sucessfully added.")
     return redirect(url_for("api.employees"))
