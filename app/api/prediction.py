@@ -104,7 +104,7 @@ def predict():
 
 
 @bp.route("/prediction/reset", methods=["POST"])
-def save_prediction():
+def reset_prediction():
     query = "reset_test_data"
     conn = db().get_connection()
     cursor = conn.cursor()
