@@ -68,7 +68,7 @@ def predict():
         predictions_sess = session.get("predictions")
         predictions_sess[id_] = predictions[id_]
         session["predictions"] = predictions_sess
-        flash("1 employee sucessfully predicted.")
+        flash("1 employee successfully predicted.")
 
         return render_template("prediction.html", test_data=test_data)
 
@@ -97,10 +97,6 @@ def predict():
         predictions_sess[id_] = predictions[id_]
 
     session["predictions"] = predictions_sess
-
-    if len(test_id) > 1:
-        flash(str(len(test_id)) + " employees sucessfully predicted.")
-    else:
-        flash(str(len(test_id)) + " employee sucessfully predicted.")
+    flash(str(len(test_id)) + " employee successfully predicted.")
 
     return render_template("prediction.html", test_data=test_data)
