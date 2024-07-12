@@ -104,25 +104,3 @@ def predict():
         flash(str(len(test_id)) + " employee sucessfully predicted.")
 
     return render_template("prediction.html", test_data=test_data)
-
-
-@bp.route("/prediction/save", methods=["POST"])
-def save_prediction():
-    predictions_sess = session.get("predictions")
-    predicted_id = predictions_sess.keys()
-
-    query = "set_employee_attrition"
-    conn = db().get_connection()
-    cursor = conn.cursor()
-
-    for id_ in predicted_id:
-        cursor.callproc(query, [id_, predictions_sess[id_]])
-        conn.commit()
-
-    cursor.close()
-    conn.close()
-
-    flash(str(len(predicted_id)) + " prediction data sucessfully saved.")
-    session.pop("predictions", None)
-
-    return redirect(url_for("api.prediction"))
