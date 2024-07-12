@@ -100,3 +100,21 @@ def predict():
     flash(str(len(test_id)) + " employee successfully predicted.")
 
     return render_template("prediction.html", test_data=test_data)
+
+
+@bp.route("/prediction/reset", methods=["POST"])
+def reset_prediction():
+    query = "reset_test_data"
+    conn = db().get_connection()
+    cursor = conn.cursor()
+
+    cursor.callproc(query)
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+
+    flash("All prediction data successfully reset.")
+    session.pop("predictions", None)
+
+    return redirect(url_for("api.prediction"))
