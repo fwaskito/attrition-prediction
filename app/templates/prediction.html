@@ -18,13 +18,13 @@
           <div class="col-3 d-flex justify-content-end">
             <div class="row">
               <div class="col">
-                <form action="/prediction/predict" method="POST">
+                <form action="/predictions/predict" method="POST">
                   <input type="hidden" name="predict_type" value="many">
                   <input class="btn btn-primary btn-sm shadow-sm" type="submit" value="Predict All">
                 </form>
               </div>
               <div class="col">
-                <form action="/prediction/reset" method="POST">
+                <form action="/predictions/reset" method="POST">
                   <input type="hidden" name="predict_type" value="reset">
                   <input class="btn btn-secondary btn-sm shadow-sm" type="submit" value="Reset Prediction Data">
                 </form>
@@ -87,7 +87,7 @@
                   {% endif %}
                   {% else %}
                   <td>
-                    <form action="/prediction/predict" method="POST">
+                    <form action="/predictions/predict" method="POST">
                       <input type="hidden" name="predict_type" value="single">
                       <input type="hidden" name="id" value="{{employee.id}}">
                       <input class="btn btn-outline-primary btn-sm" type="submit" value="Predict">
@@ -96,7 +96,7 @@
                   {% endif %}
                   {% else %}
                   <td>
-                    <form action="/prediction/predict" method="POST">
+                    <form action="/predictions/predict" method="POST">
                       <input type="hidden" name="predict_type" value="single">
                       <input type="hidden" name="id" value="{{employee.id}}">
                       <input class="btn btn-outline-primary btn-sm" type="submit" value="Prediksi">

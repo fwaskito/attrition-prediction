@@ -6,8 +6,8 @@ from app.utils.classification import Classifier
 from app.api import bp
 
 
-@bp.route("/prediction", methods=["GET"])
-def prediction():
+@bp.route("/predictions", methods=["GET"])
+def predictions():
     query = "get_test_data"
     conn = db().get_connection()
     cursor = conn.cursor(cursor_factory=RealDictCursor)
@@ -21,10 +21,14 @@ def prediction():
         predictions = {}
         session["predictions"] = predictions
 
-    return render_template("prediction.html", test_data=test_data, page="prediction")
+    return render_template(
+        "prediction.html",
+        test_data=test_data,
+        page="prediction",
+    )
 
 
-@bp.route("/prediction/predict", methods=["POST"])
+@bp.route("/predictions/predict", methods=["POST"])
 def predict():
     # Get all test data
     query = "get_test_data"
@@ -70,7 +74,7 @@ def predict():
         session["predictions"] = predictions_sess
         flash("1 employee successfully predicted.")
 
-        return render_template("prediction.html", test_data=test_data)
+        return redirect(url_for("api.predictions"))
 
     # Many data predictions
     predictions_sess = session.get("predictions")
@@ -99,10 +103,10 @@ def predict():
     session["predictions"] = predictions_sess
     flash(str(len(test_id)) + " employee successfully predicted.")
 
-    return render_template("prediction.html", test_data=test_data)
+    return redirect(url_for("api.predictions"))
 
 
-@bp.route("/prediction/reset", methods=["POST"])
+@bp.route("/predictions/reset", methods=["POST"])
 def reset_prediction():
     query = "reset_test_data"
     conn = db().get_connection()
@@ -117,4 +121,4 @@ def reset_prediction():
     flash("All prediction data successfully reset.")
     session.pop("predictions", None)
 
-    return redirect(url_for("api.prediction"))
+    return redirect(url_for("api.predictions"))
