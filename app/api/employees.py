@@ -30,30 +30,30 @@ def edit_employee():
     age = request.form.get("age")
     department_id = request.form.get("department_id")
     dist_from_home = request.form.get("dist_from_home")
-    edu = request.form.get("edu")
-    edu_field = request.form.get("edu_field")
-    env_sat = request.form.get("env_sat")
-    job_sat = request.form.get("job_sat")
-    marital_sts = request.form.get("marital_sts")
+    education = request.form.get("education")
+    education_field = request.form.get("education_field")
+    env_satisfaction = request.form.get("env_satisfaction")
+    job_satisfaction = request.form.get("job_satisfaction")
+    marital_status = request.form.get("marital_status")
     num_comp_worked = request.form.get("num_comp_worked")
-    salary = request.form.get("salary")
-    wlb = request.form.get("wlb")
-    years_at_comp = request.form.get("years_at_comp")
+    monthly_income = request.form.get("monthly_income")
+    work_life_balance = request.form.get("work_life_balance")
+    years_at_company = request.form.get("years_at_company")
 
     values = [
+        id_,
         age,
         department_id,
         dist_from_home,
-        edu,
-        edu_field,
-        env_sat,
-        job_sat,
-        marital_sts,
+        education,
+        education_field,
+        env_satisfaction,
+        job_satisfaction,
+        marital_status,
         num_comp_worked,
-        salary,
-        wlb,
-        years_at_comp,
-        id_,
+        monthly_income,
+        work_life_balance,
+        years_at_company,
     ]
 
     query = "update_employee"
@@ -65,12 +65,12 @@ def edit_employee():
     cursor.close()
     conn.close()
 
-    flash("Employee " + id_ + "'s data sucessfully updated.")
+    flash("Employee " + id_ + "'s data successfully updated.")
     return redirect(url_for("api.employees"))
 
 
 @bp.route("/employees/delete", methods=["POST"])
-def deleteData():
+def delete_employee():
     id_ = request.form.get("id")
     query = "delete_employee"
     conn = db().get_connection()
@@ -81,26 +81,26 @@ def deleteData():
     cursor.close()
     conn.close()
 
-    flash("Employee " + id_ + " sucessfully deleted.")
+    flash("Employee " + id_ + " successfully deleted.")
     return redirect(url_for("api.employees"))
 
 
 @bp.route("/employees/add", methods=["POST"])
 def add_employee():
-    id_ = session.get("new_id")
+    id_ = request.form.get("id")
     attrition = "No"
     age = request.form.get("age")
     department_id = request.form.get("department_id")
     dist_from_home = request.form.get("dist_from_home")
-    edu = request.form.get("edu")
-    edu_field = request.form.get("edu_field")
-    env_sat = request.form.get("env_sat")
-    job_sat = request.form.get("job_sat")
-    marital_sts = request.form.get("marital_sts")
+    education = request.form.get("education")
+    education_field = request.form.get("edu_field")
+    env_satisfaction = request.form.get("env_satisfaction")
+    job_satisfaction = request.form.get("job_satisfaction")
+    marital_status = request.form.get("marital_status")
     num_comp_worked = request.form.get("num_comp_worked")
-    salary = request.form.get("salary")
-    wlb = request.form.get("wlb")
-    years_at_comp = request.form.get("years_at_comp")
+    monthly_income = request.form.get("monthly_income")
+    work_life_balance = request.form.get("work_life_balance")
+    years_at_company = request.form.get("years_at_company")
 
     values = [
         id_,
@@ -108,15 +108,15 @@ def add_employee():
         age,
         department_id,
         dist_from_home,
-        edu,
-        edu_field,
-        env_sat,
-        job_sat,
-        marital_sts,
+        education,
+        education_field,
+        env_satisfaction,
+        job_satisfaction,
+        marital_status,
         num_comp_worked,
-        salary,
-        wlb,
-        years_at_comp,
+        monthly_income,
+        work_life_balance,
+        years_at_company,
     ]
 
     query = "add_employee"
@@ -129,5 +129,5 @@ def add_employee():
     conn.close()
 
     session["new_id"] = None
-    flash("Employee " + id_ + " sucessfully added.")
+    flash("Employee " + id_ + " successfully added.")
     return redirect(url_for("api.employees"))
