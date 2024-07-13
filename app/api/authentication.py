@@ -1,6 +1,6 @@
 from flask import session, render_template, redirect, url_for, flash
 from psycopg2.extras import RealDictCursor
-from app.models.database import Database
+from app.models.database import Database as db
 from app.forms import SigninForm
 from app.api import bp
 
@@ -13,22 +13,25 @@ def login():
             username = form.username.data
             password = form.password.data
 
-            query = "select * from sppk.user where username='" + username + "';"
-            conn = Database().get_connection()
+            query = "get_system_user"
+            conn = db().get_connection()
             cursor = conn.cursor(cursor_factory=RealDictCursor)
-            cursor.execute(query)
-            data = cursor.fetchall()
+            cursor.callproc(query, [username])
+            user = cursor.fetchall()
 
-            if len(data) > 0:
-                if str(data[0]["password"]) == str(password):
-                    session["user"] = data[0]
+            cursor.close()
+            conn.close()
+
+            if len(user) > 0:
+                if str(user[0]["password"]) == str(password):
+                    session["user"] = user[0]
                     return redirect(url_for("api.employees"))
-                else:
-                    flash("Password invalid!")
-                    return render_template("login.html", form=form, page="login")
-            else:
-                flash("Username invalid!")
+
+                flash("Password invalid!")
                 return render_template("login.html", form=form, page="login")
+
+            flash("Username invalid!")
+            return render_template("login.html", form=form, page="login")
 
         except Exception as e:
             print("Execption: ", e)

@@ -8,7 +8,7 @@
         <div class="row align-items-end">
           <div class="p-2 col-md-2 col-4">
             <small><b>User</b>: {{session.get('user')['name']}}</small></br>
-            <small><b>Role</b>: {{session.get('user')['type']}}</small>
+            <small><b>Role</b>: {{session.get('user')['role']}}</small>
             <hr>
           </div>
           <div class="col text-center">
@@ -76,35 +76,35 @@
                 {% for employee in employees_history %}
                 <tr class="pd-2">
                   <td>{{employee['id']}}</td>
-                  {% if employee['mod_action'] == 'delete' %}
+                  {% if employee['modif_action'] == 'delete' %}
                   <td>
-                    <font style="color:red;"><strong><i>{{employee['mod_action']}}</i></strong>
+                    <font style="color:red;"><strong><i>{{employee['modif_action']}}</i></strong>
                     </font>
                   </td>
                   {% else %}
                   <td>
-                    <font style="color:green;"><strong><i>{{employee['mod_action']}}</i></strong>
+                    <font style="color:green;"><strong><i>{{employee['modif_action']}}</i></strong>
                     </font>
                   </td>
                   {% endif %}
-                  <td>{{employee['mod_date']}}</td>
+                  <td>{{employee['modif_date']}}</td>
                   {% if employee['attrition'] == 'Yes' %}
                   <td class="table table-danger">{{employee['attrition']}}</td>
                   {% else %}
                   <td class="table table-success">{{employee['attrition']}}</td>
                   {% endif %}
                   <td>{{employee['age']}}</td>
-                  <td>{{employee['department_name']}}</td>
+                  <td>{{employee['department']}}</td>
                   <td>{{employee['dist_from_home']}} km</td>
-                  <td>{{employee['edu']}}</td>
-                  <td>{{employee['edu_field']}}</td>
-                  <td>{{employee['env_sat']}}</td>
-                  <td>{{employee['job_sat']}}</td>
-                  <td>{{employee['marital_sts']}}</td>
+                  <td>{{employee['education']}}</td>
+                  <td>{{employee['education_field']}}</td>
+                  <td>{{employee['env_satisfaction']}}</td>
+                  <td>{{employee['job_satisfaction']}}</td>
+                  <td>{{employee['marital_status']}}</td>
                   <td>{{employee['num_comp_worked']}}</td>
-                  <td>{{employee['salary']}}</td>
-                  <td>{{employee['wlb']}}</td>
-                  <td>{{employee['years_at_comp']}}</td>
+                  <td>{{employee['monthly_income']}}</td>
+                  <td>{{employee['work_life_balance']}}</td>
+                  <td>{{employee['years_at_company']}}</td>
                 </tr>
                 {% endfor %}
               </tbody>
