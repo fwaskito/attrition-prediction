@@ -4,8 +4,8 @@ from psycopg2.extras import RealDictCursor
 from app.api import bp
 
 
-@bp.route("/history", methods=["GET", "POST"])
-def employees_history():
+@bp.route("/employee-histories", methods=["GET"])
+def employee_histories():
     if session.get("user"):
         query = "get_train_data_distribution"
         conn = db().get_connection()
