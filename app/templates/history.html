@@ -16,13 +16,13 @@
           </div>
 
           <div class="col-md-2 col-4 border bg-light shadow-sm">
-            <small>Attrition Class Distibution</small><br>
+            <small>Attrition Class Distribution</small><br>
             <table class="table table-light">
               <tr>
-                <td class="table table-danger"><b><i>Yes</i></b>:</td>
-                <td class="table">{{class_distrib.class_yes}}</td>
                 <td class="table table-success"><b><i>No</i></b>:</td>
-                <td class="table">{{class_distrib.class_no}}</td>
+                <td class="table">{{class_distrib.no}}</td>
+                <td class="table table-danger"><b><i>Yes</i></b>:</td>
+                <td class="table">{{class_distrib.yes}}</td>
               </tr>
             </table>
           </div>
@@ -73,7 +73,7 @@
                 </tr>
               </tfoot>
               <tbody class="table table-secondary table-group-divider">
-                {% for employee in employees_history %}
+                {% for employee in employee_histories %}
                 <tr class="pd-2">
                   <td>{{employee['id']}}</td>
                   {% if employee['modif_action'] == 'delete' %}
