@@ -1,7 +1,7 @@
 from flask import session
 from flask import render_template, redirect, url_for, flash
 from app.forms import SigninForm
-from app.models.model import User
+from app.api.models.model import User
 from app.api import bp
 
 

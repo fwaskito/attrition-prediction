@@ -2,7 +2,7 @@ from flask import request, session
 from flask import render_template, flash, redirect, url_for
 from pandas import DataFrame
 from app.utils.classification import Classifier
-from app.models.model import Prediction
+from app.api.models.model import Prediction
 from app.api import bp
 
 
