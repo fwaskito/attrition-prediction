@@ -1,7 +1,7 @@
-from flask import session, render_template, redirect, url_for, flash
-from psycopg2.extras import RealDictCursor
-from app.models.database import Database as db
+from flask import session
+from flask import render_template, redirect, url_for, flash
 from app.forms import SigninForm
+from app.models.model import User
 from app.api import bp
 
 
@@ -12,15 +12,7 @@ def login():
         try:
             username = form.username.data
             password = form.password.data
-
-            query = "get_system_user"
-            conn = db().get_connection()
-            cursor = conn.cursor(cursor_factory=RealDictCursor)
-            cursor.callproc(query, [username])
-            user = cursor.fetchall()
-
-            cursor.close()
-            conn.close()
+            user = User().get_user(username)
 
             if len(user) > 0:
                 if str(user[0]["password"]) == str(password):
@@ -45,4 +37,5 @@ def logout():
     session.pop("user", None)
     session.pop("predictions", None)
     session.pop("new_id", None)
+
     return redirect(url_for("api.main"))

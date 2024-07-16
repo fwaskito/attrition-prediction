@@ -1,31 +1,19 @@
 from flask import session, render_template
-from app.models.database import Database as db
-from psycopg2.extras import RealDictCursor
+from app.models.model import EmployeeHistory
 from app.api import bp
 
 
 @bp.route("/employee-histories", methods=["GET"])
 def employee_histories():
     if session.get("user"):
-        conn = db().get_connection()
-        query = "get_employees_history"
-        cursor = conn.cursor(cursor_factory=RealDictCursor)
-        cursor.callproc(query)
-        employee_histories_data = cursor.fetchall()
+        employee_histories_data = EmployeeHistory().get_employee_histories()
+        train_class_distrib = EmployeeHistory().get_train_class_distribution()
 
-        query = "get_train_class_distribution"
-        cursor = conn.cursor(cursor_factory=RealDictCursor)
-        cursor.callproc(query)
-        train_class_distrib = cursor.fetchall()[0]
-
-        cursor.close()
-        conn.close()
-
-        if train_class_distrib["e_attrition_no"] == None:
+        if train_class_distrib["e_attrition_no"] is None:
             train_class_distrib["e_attrition_no"] = 0
-        if train_class_distrib["eh_attrition_no"] == None:
+        if train_class_distrib["eh_attrition_no"] is None:
             train_class_distrib["eh_attrition_no"] = 0
-        if train_class_distrib["eh_attrition_yes"] == None:
+        if train_class_distrib["eh_attrition_yes"] is None:
             train_class_distrib["eh_attrition_yes"] = 0
 
         class_distrib = {
