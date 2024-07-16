@@ -1,5 +1,5 @@
 from flask import session, render_template
-from app.models.model import EmployeeHistory
+from app.api.models.model import EmployeeHistory
 from app.api import bp
 
 

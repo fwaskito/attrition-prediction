@@ -1,7 +1,7 @@
 from flask import request, session
 from flask import render_template, redirect, url_for, flash
 from app.utils.helper import generate_id
-from app.models.model import Employee
+from app.api.models.model import Employee
 from app.api import bp
 
 
