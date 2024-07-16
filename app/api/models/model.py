@@ -1,11 +1,11 @@
 from psycopg2.extras import RealDictCursor
-from app.models.database import Database as db
+from app.api.models.database import Database
 
 
 class Employee:
     def get_employees(self):
         query = "get_employees"
-        conn = db().get_connection()
+        conn = Database().get_connection()
         cursor = conn.cursor(cursor_factory=RealDictCursor)
         cursor.callproc(query)
         employees = cursor.fetchall()
@@ -17,7 +17,7 @@ class Employee:
 
     def update_employee(self, values: list):
         query = "update_employee"
-        conn = db().get_connection()
+        conn = Database().get_connection()
         cursor = conn.cursor()
         cursor.callproc(query, values)
         conn.commit()
@@ -27,7 +27,7 @@ class Employee:
 
     def delete_employee(self, id_: str):
         query = "delete_employee"
-        conn = db().get_connection()
+        conn = Database().get_connection()
         cursor = conn.cursor()
         cursor.callproc(query, [id_])
         conn.commit()
@@ -37,7 +37,7 @@ class Employee:
 
     def add_employee(self, values: list):
         query = "add_employee"
-        conn = db().get_connection()
+        conn = Database().get_connection()
         cursor = conn.cursor()
         cursor.callproc(query, values)
         conn.commit()
@@ -49,7 +49,7 @@ class Employee:
 class EmployeeHistory:
     def get_employee_histories(self):
         query = "get_employees_history"
-        conn = db().get_connection()
+        conn = Database().get_connection()
         cursor = conn.cursor(cursor_factory=RealDictCursor)
         cursor.callproc(query)
         employees_history = cursor.fetchall()
@@ -61,7 +61,7 @@ class EmployeeHistory:
 
     def get_train_class_distribution(self):
         query = "get_train_class_distribution"
-        conn = db().get_connection()
+        conn = Database().get_connection()
         cursor = conn.cursor(cursor_factory=RealDictCursor)
         cursor.callproc(query)
         class_distrib = cursor.fetchall()[0]
@@ -75,7 +75,7 @@ class EmployeeHistory:
 class Prediction:
     def get_test_data(self):
         query = "get_test_data"
-        conn = db().get_connection()
+        conn = Database().get_connection()
         cursor = conn.cursor(cursor_factory=RealDictCursor)
         cursor.callproc(query)
         test_data = cursor.fetchall()
@@ -87,7 +87,7 @@ class Prediction:
 
     def get_train_data(self):
         query = "get_train_data"
-        conn = db().get_connection()
+        conn = Database().get_connection()
         cursor = conn.cursor(cursor_factory=RealDictCursor)
         cursor.callproc(query)
         train_data = cursor.fetchall()
@@ -99,7 +99,7 @@ class Prediction:
 
     def rest_test_data(self):
         query = "reset_test_data"
-        conn = db().get_connection()
+        conn = Database().get_connection()
         cursor = conn.cursor()
         cursor.callproc(query)
         conn.commit()
@@ -111,7 +111,7 @@ class Prediction:
 class User:
     def get_user(self, username: str):
         query = "get_sys_user"
-        conn = db().get_connection()
+        conn = Database().get_connection()
         cursor = conn.cursor(cursor_factory=RealDictCursor)
         cursor.callproc(query, [username])
         user = cursor.fetchall()

@@ -1,8 +1,8 @@
-from app.models.database import Database as db
+from app.api.models.database import Database
 
 
 def generate_id():
-    conn = db().get_connection()
+    conn = Database().get_connection()
     cursor = conn.cursor()
 
     query = "SELECT max(id) FROM employee"
