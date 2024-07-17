@@ -1,14 +1,16 @@
 from flask import request, session
 from flask import render_template, flash, redirect, url_for
 from pandas import DataFrame
-from app.utils.classification import Classifier
 from app.api.models.model import Prediction
+from app.utils.classification import Classifier
+from app.utils.helper import convert_attribute
 from app.api import bp
 
 
 @bp.route("/predictions", methods=["GET"])
 def predictions():
     test_data = Prediction().get_test_data()
+    convert_attribute(test_data)
 
     if session.get("predictions") is None:
         predictions = {}

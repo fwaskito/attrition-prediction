@@ -1,6 +1,6 @@
 from flask import request, session
 from flask import render_template, redirect, url_for, flash
-from app.utils.helper import generate_id
+from app.utils.helper import convert_attribute, generate_id
 from app.api.models.model import Employee
 from app.api import bp
 
@@ -9,11 +9,16 @@ from app.api import bp
 def employees():
     if session.get("user"):
         employees_data = Employee().get_employees()
+        convert_attribute(employees_data)
 
         if session.get("new_id") is None:
             session["new_id"] = generate_id()
 
-        return render_template("home.html", employees=employees_data, page="home")
+        return render_template(
+            "home.html",
+            employees=employees_data,
+            page="home",
+        )
     return render_template("error.html", error="Unauthorized Access")
 
 
