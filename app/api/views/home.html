@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Home - Employee Data{% endblock %}
+{% block title %}Employee Data{% endblock %}
 {% block content %}
 <div class="container-fluid">
   <div class="row mb-4">
@@ -114,14 +114,14 @@
                           <fieldset disabled="disabled">
                             <div class="input-group mb-3">
                               <span class="input-group-text">
-                                ID&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                ID&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                               </span>
                               <input type="text" class="form-control" aria-label="Sizing example input"
                                 aria-describedby="inputGroup-sizing-default" value="{{employee['id']}}">
                             </div>
                             <div class="input-group mb-3">
                               <span class="input-group-text">
-                                Attrition Status&emsp;&emsp;&emsp;&emsp;
+                                Attrition Status&emsp;&emsp;&emsp;
                               </span>
                               <input type="text" class="form-control" aria-label="Sizing example input"
                                 aria-describedby="inputGroup-sizing-default" value="{{employee['attrition']}}">
@@ -130,7 +130,7 @@
                           <input type="hidden" class="form-control" name="id" value="{{employee['id']}}">
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Age&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+                              Age&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
                             </span>
                             <input type="number" min="0" max="100" class="form-control"
                               aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="age"
@@ -138,7 +138,7 @@
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Department&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;
+                              Department&emsp;&emsp;&emsp;&emsp;&ensp;
                             </span>
                             <select class="form-select" aria-label="Default select example" name="department_id">
                               {% if employee['department'] == 'Research & Development' %}
@@ -149,7 +149,7 @@
                               <option value="DP1">Research & Development</option>
                               <option value="DP2" selected>Sales</option>
                               <option value="DP3">Human Resources</option>
-                              {% else %}
+                              {% elif employee['department'] == 'Human Resources' %}
                               <option value="DP1">Research & Development</option>
                               <option value="DP2">Sales</option>
                               <option value="DP3" selected>Human Resources</option>
@@ -158,7 +158,7 @@
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Dist. from Home (KM)&emsp;
+                              Dist. from Home (KM)
                             </span>
                             <input type="number" min="0" class="form-control" aria-label="Sizing example input"
                               aria-describedby="inputGroup-sizing-default" name="dist_from_home"
@@ -166,71 +166,113 @@
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Education&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;
+                              Education&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;
                             </span>
                             <select class="form-select" aria-label="Default select example" name="education">
-                              {% if employee['education'] == 1 %}
-                              <option value="1" selected>1 (Below College)</option>
-                              <option value="2">2 (College)</option>
-                              <option value="3">3 (Bachelor)</option>
-                              <option value="4">4 (Master)</option>
-                              <option value="5">5 (Doctor)</option>
-                              {% elif employee['education'] == 2 %}
-                              <option value="1">1 (Below College)</option>
-                              <option value="2" selected>2 (College)</option>
-                              <option value="3">3 (Bachelor)</option>
-                              <option value="4">4 (Master)</option>
-                              <option value="5">5 (Doctor)</option>
-                              {% elif employee['education'] == 3 %}
-                              <option value="1">1 (Below College)</option>
-                              <option value="2">2 (College)</option>
-                              <option value="3" selected>3 (Bachelor)</option>
-                              <option value="4">4 (Master)</option>
-                              <option value="5">5 (Doctor)</option>
-                              {% elif employee['education'] == 4 %}
-                              <option value="1">1 (Below College)</option>
-                              <option value="2">2 (College)</option>
-                              <option value="3">3 (Bachelor)</option>
-                              <option value="4" selected>4 (Master)</option>
-                              <option value="5">5 (Doctor)</option>
-                              {% else %}
-                              <option value="1">1 (Below College)</option>
-                              <option value="2">2 (College)</option>
-                              <option value="3">3 (Bachelor)</option>
-                              <option value="4">4 (Master)</option>
-                              <option value="5" selected>5 (Doctor)</option>
+                              {% if employee['education'] == 'Below College' %}
+                              <option value="1" selected>Below College</option>
+                              <option value="2">College</option>
+                              <option value="3">Bachelor</option>
+                              <option value="4">Master</option>
+                              <option value="5">Doctor</option>
+                              {% elif employee['education'] == 'College' %}
+                              <option value="1">Below College</option>
+                              <option value="2" selected>College</option>
+                              <option value="3">Bachelor</option>
+                              <option value="4">Master</option>
+                              <option value="5">Doctor</option>
+                              {% elif employee['education'] == 'Bachelor' %}
+                              <option value="1">Below College</option>
+                              <option value="2">College</option>
+                              <option value="3" selected>Bachelor</option>
+                              <option value="4">Master</option>
+                              <option value="5">Doctor</option>
+                              {% elif employee['education'] == 'Master' %}
+                              <option value="1">Below College</option>
+                              <option value="2">College</option>
+                              <option value="3">Bachelor</option>
+                              <option value="4" selected>Master</option>
+                              <option value="5">Doctor</option>
+                              {% elif employee['education'] == 'Doctor' %}
+                              <option value="1">Below College</option>
+                              <option value="2">College</option>
+                              <option value="3">Bachelor</option>
+                              <option value="4">Master</option>
+                              <option value="5" selected>Doctor</option>
                               {% endif %}
                             </select>
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Education Field&emsp;&emsp;&emsp;&ensp;&ensp;
+                              Education Field&emsp;&emsp;&ensp;&ensp;
                             </span>
-                            <input type="text" class="form-control" aria-label="Sizing example input"
-                              aria-describedby="inputGroup-sizing-default" name="education_field"
-                              value="{{employee['education_field']}}">
+                            <select class="form-select" aria-label="Default select example" name="education_field">
+                              {% if employee['education_field'] == 'Human Resources' %}
+                              <option value="Human Resources" selected>Human Resources</option>
+                              <option value="Life Sciences">Life Sciences</option>
+                              <option value="Marketing">Marketing</option>
+                              <option value="Medical">Medical</option>
+                              <option value="Technical">Technical</option>
+                              <option value="Other">Other</option>
+                              {% elif employee['education_field'] == 'Life Sciences' %}
+                              <option value="Human Resources">Human Resources</option>
+                              <option value="Life Sciences" selected>Life Sciences</option>
+                              <option value="Marketing">Marketing</option>
+                              <option value="Medical">Medical</option>
+                              <option value="Technical">Technical</option>
+                              <option value="Other">Other</option>
+                              {% elif employee['education_field'] == 'Marketing' %}
+                              <option value="Human Resources">Human Resources</option>
+                              <option value="Life Sciences">Life Sciences</option>
+                              <option value="Marketing" selected>Marketing</option>
+                              <option value="Medical">Medical</option>
+                              <option value="Technical">Technical</option>
+                              <option value="Other">Other</option>
+                              {% elif employee['education_field'] == 'Medical' %}
+                              <option value="Human Resources">Human Resources</option>
+                              <option value="Life Sciences">Life Sciences</option>
+                              <option value="Marketing">Marketing</option>
+                              <option value="Medical" selected>Medical</option>
+                              <option value="Technical">Technical</option>
+                              <option value="Other">Other</option>
+                              {% elif employee['education_field'] == 'Technical' %}
+                              <option value="Human Resources">Human Resources</option>
+                              <option value="Life Sciences">Life Sciences</option>
+                              <option value="Marketing">Marketing</option>
+                              <option value="Medical">Medical</option>
+                              <option value="Technical" selected>Technical</option>
+                              <option value="Other">Other</option>
+                              {% elif employee['education_field'] == 'Other' %}
+                              <option value="Human Resources">Human Resources</option>
+                              <option value="Life Sciences">Life Sciences</option>
+                              <option value="Marketing">Marketing</option>
+                              <option value="Medical">Medical</option>
+                              <option value="Technical">Technical</option>
+                              <option value="Other" selected>Other</option>
+                              {% endif %}
+                            </select>
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Env. Satisfaction&emsp;&emsp;&emsp;&ensp;
+                              Env. Satisfaction&emsp;&emsp;&ensp;
                             </span>
                             <select class="form-select" aria-label="Default select example" name="env_satisfaction">
-                              {% if employee['env_satisfaction'] == 4 %}
+                              {% if employee['env_satisfaction'] == 'Very High' %}
                               <option value="4" selected>Very High</option>
                               <option value="3">High</option>
                               <option value="2">Medium</option>
                               <option value="1">Low</option>
-                              {% elif employee['env_satisfaction'] == 3 %}
+                              {% elif employee['env_satisfaction'] == 'High' %}
                               <option value="4">Very High</option>
                               <option value="3" selected>High</option>
                               <option value="2">Medium</option>
                               <option value="1">Low</option>
-                              {% elif employee['env_satisfaction'] == 2 %}
+                              {% elif employee['env_satisfaction'] == 'Medium' %}
                               <option value="4">Very High</option>
                               <option value="3">High</option>
                               <option value="2" selected>Medium</option>
                               <option value="1">Low</option>
-                              {% else %}
+                              {% elif employee['env_satisfaction'] == 'Low' %}
                               <option value="4">Very High</option>
                               <option value="3">High</option>
                               <option value="2">Medium</option>
@@ -240,25 +282,25 @@
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Job Satisfaction&emsp;&emsp;&emsp;&emsp;
+                              Job Satisfaction&emsp;&emsp;&emsp;
                             </span>
                             <select class="form-select" aria-label="Default select example" name="job_satisfaction">
-                              {% if employee['job_satisfaction'] == 4 %}
+                              {% if employee['job_satisfaction'] == 'Very High' %}
                               <option value="4" selected>Very High</option>
                               <option value="3">High</option>
                               <option value="2">Medium</option>
                               <option value="1">Low</option>
-                              {% elif employee['job_satisfaction'] == 3 %}
+                              {% elif employee['job_satisfaction'] == 'High' %}
                               <option value="4">Very High</option>
                               <option value="3" selected>High</option>
                               <option value="2">Medium</option>
                               <option value="1">Low</option>
-                              {% elif employee['job_satisfaction'] == 2 %}
+                              {% elif employee['job_satisfaction'] == 'Medium' %}
                               <option value="4">Very High</option>
                               <option value="3">High</option>
                               <option value="2" selected>Medium</option>
                               <option value="1">Low</option>
-                              {% else %}
+                              {% elif employee['job_satisfaction'] == 'Low' %}
                               <option value="4">Very High</option>
                               <option value="3">High</option>
                               <option value="2">Medium</option>
@@ -268,27 +310,27 @@
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Marital Status&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;
+                              Marital Status&emsp;&emsp;&emsp;&ensp;&nbsp;
                             </span>
                             <select class="form-select" aria-label="Default select example" name="marital_status">
-                              {% if employee['marital_status'] == 'single' %}
-                              <option value="single" selected>Single</option>
-                              <option value="married">Married</option>
-                              <option value="divorced">Divorced</option>
-                              {% elif employee['marital_status'] == 'married' %}
-                              <option value="single">Single</option>
-                              <option value="married" selected>Married</option>
-                              <option value="divorced">Divorced</option>
-                              {% else %}
-                              <option value="single">Single</option>
-                              <option value="married">Married</option>
-                              <option value="divorced" selected>Divorced</option>
+                              {% if employee['marital_status'] == 'Single' %}
+                              <option value="Single" selected>Single</option>
+                              <option value="Married">Married</option>
+                              <option value="Divorced">Divorced</option>
+                              {% elif employee['marital_status'] == 'Married' %}
+                              <option value="Single">Single</option>
+                              <option value="Married" selected>Married</option>
+                              <option value="Divorced">Divorced</option>
+                              {% elif employee['marital_status'] == 'Divorced' %}
+                              <option value="Single">Single</option>
+                              <option value="Married">Married</option>
+                              <option value="Divorced" selected>Divorced</option>
                               {% endif %}
                             </select>
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Num. Company Worked
+                              Num. Comp. Worked&ensp;
                             </span>
                             <input type="number" min="0" class="form-control" aria-label="Sizing example input"
                               aria-describedby="inputGroup-sizing-default" name="num_comp_worked"
@@ -296,7 +338,7 @@
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Monthly Income&emsp;&emsp;&emsp;&ensp;
+                              Monthly Income&emsp;&emsp;&ensp;
                             </span>
                             <input type="number" min="0" class="form-control" aria-label="Sizing example input"
                               aria-describedby="inputGroup-sizing-default" name="monthly_income"
@@ -304,35 +346,35 @@
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Work Life Balance&emsp;&emsp;&ensp;&nbsp;
+                              Work Life Balance&emsp;&ensp;&nbsp;
                             </span>
                             <select class="form-select" aria-label="Default select example" name="work_life_balance">
-                              {% if employee['work_life_balance'] == 4 %}
-                              <option value="4" selected>4 (Best)</option>
-                              <option value="3">3 (Better)</option>
-                              <option value="2">2 (Good)</option>
-                              <option value="1">1 (Bad)</option>
-                              {% elif employee['work_life_balance'] == 3 %}
-                              <option value="4">4 (Best)</option>
-                              <option value="3" selected>3 (Better)</option>
-                              <option value="2">2 (Good)</option>
-                              <option value="1">1 (Bad)</option>
-                              {% elif employee['work_life_balance'] == 2 %}
-                              <option value="4">4 (Best)</option>
-                              <option value="3">3 (Better)</option>
-                              <option value="2" selected>2 (Good)</option>
-                              <option value="1">1 (Bad)</option>
-                              {% else %}
-                              <option value="4">4 (Best)</option>
-                              <option value="3">3 (Better)</option>
-                              <option value="2">2 (Good)</option>
+                              {% if employee['work_life_balance'] == 'Best' %}
+                              <option value="4" selected>Best</option>
+                              <option value="3">Better</option>
+                              <option value="2">Good</option>
+                              <option value="1">Bad</option>
+                              {% elif employee['work_life_balance'] == 'Better' %}
+                              <option value="4">Best</option>
+                              <option value="3" selected>Better</option>
+                              <option value="2">Good</option>
+                              <option value="1">Bad</option>
+                              {% elif employee['work_life_balance'] == 'Good' %}
+                              <option value="4">Best</option>
+                              <option value="3">Better</option>
+                              <option value="2" selected>Good</option>
+                              <option value="1">Bad</option>
+                              {% elif employee['work_life_balance'] == 'Bad' %}
+                              <option value="4">Best</option>
+                              <option value="3">Better</option>
+                              <option value="2">Good</option>
                               <option value="1" selected>1 (Bad)</option>
                               {% endif %}
                             </select>
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Years at Company&emsp;&emsp;&ensp;&nbsp;
+                              Years at Company&emsp;&ensp;&nbsp;
                             </span>
                             <input type="number" min="0" max="100" class="form-control"
                               aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
@@ -409,14 +451,14 @@
           <fieldset disabled="disabled">
             <div class="input-group mb-3">
               <span class="input-group-text">
-                ID&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                ID&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
               </span>
               <input type="text" class="form-control" aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default" name="id" value="{{session.get('new_id')}}">
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text">
-                Attrition Status&emsp;&emsp;&emsp;&emsp;
+                Attrition Status&emsp;&emsp;&emsp;
               </span>
               <input type="text" class="form-control" aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default" name="attrition" value="No">
@@ -424,17 +466,17 @@
           </fieldset>
           <div class="input-group mb-3">
             <span class="input-group-text">
-              Age&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+              Age&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
             </span>
-            <input type="number" min="0" max="100" placeholder="Enter age in numbers (e.g. 24)" class="form-control"
+            <input type="number" min="0" max="100" placeholder="Enter age in numbers (e.g., 24)" class="form-control"
               aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="age">
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text">
-              Department&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;
+              Department&emsp;&emsp;&emsp;&emsp;&ensp;
             </span>
             <select class="form-select" aria-label="Default select example" name="department_id">
-              <option selected>--- Choose Department ---</option>
+              <option selected>--- Select Department ---</option>
               <option value="DP1">Research & Development</option>
               <option value="DP2">Sales</option>
               <option value="DP3">Human Resources</option>
@@ -442,17 +484,17 @@
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text">
-              Distance from Home&emsp;&ensp;
+              Distance from Home&ensp;
             </span>
-            <input type="number" min="0" placeholder="Enter distance in KM (e.g. 4)" class="form-control"
+            <input type="number" min="0" placeholder="Enter distance in KM (e.g., 4)" class="form-control"
               aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="dist_from_home">
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text">
-              Education&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;
+              Education&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;
             </span>
             <select class="form-select" aria-label="Default select example" name="education">
-              <option selected>--- Choose Education ---</option>
+              <option selected>--- Select Education ---</option>
               <option value="1">Below College</option>
               <option value="2">College</option>
               <option value="3">Bachelor</option>
@@ -462,17 +504,24 @@
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text">
-              Education Field&emsp;&emsp;&emsp;&ensp;&ensp;
+              Education Field&emsp;&emsp;&ensp;&ensp;
             </span>
-            <input type="text" class="form-control" placeholder="Enter education field"
-              aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="education_field">
+            <select class="form-select" aria-label="Default select example" name="education_field">
+              <option selected>--- Select Education Field ---</option>
+              <option value="Human Resources">Human Resources</option>
+              <option value="Life Sciences">Life Sciences</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Medical">Medical</option>
+              <option value="Technical">Technical</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text">
-              Env. Satisfaction&emsp;&emsp;&emsp;&ensp;
+              Env. Satisfaction&emsp;&emsp;&ensp;
             </span>
             <select class="form-select" aria-label="Default select example" name="env_satisfaction">
-              <option selected>--- Choose Environment Satisfaction ---</option>
+              <option selected>--- Select Environment Satisfaction ---</option>
               <option value="4">Very High</option>
               <option value="3">High</option>
               <option value="2">Medium</option>
@@ -481,10 +530,10 @@
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text">
-              Job Satisfaction&emsp;&emsp;&emsp;&emsp;
+              Job Satisfaction&emsp;&emsp;&emsp;
             </span>
             <select class="form-select" aria-label="Default select example" name="job_satisfaction">
-              <option selected>--- Choose Job Satisfaction ---</option>
+              <option selected>--- Select Job Satisfaction ---</option>
               <option value="4">Very High</option>
               <option value="3">High</option>
               <option value="2">Medium</option>
@@ -493,36 +542,36 @@
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text">
-              Marital Status&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;
+              Marital Status&emsp;&emsp;&emsp;&ensp;&nbsp;
             </span>
             <select class="form-select" aria-label="Default select example" name="marital_status">
-              <option selected>--- Choose Marital Status ---</option>
-              <option value="single">Single</option>
-              <option value="married">Married</option>
-              <option value="divorced">Divorced</option>
+              <option selected>--- Select Marital Status ---</option>
+              <option value="Single">Single</option>
+              <option value="Married">Married</option>
+              <option value="Divorced">Divorced</option>
             </select>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text">
-              Num. Company Worked
+              Num. Comp. Worked&ensp;
             </span>
-            <input type="number" min="0" placeholder="Enter number of companies worked prior to IBM (e.g. 2)"
+            <input type="number" min="0" placeholder="Enter number of companies worked prior to IBM (e.g., 2)"
               class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
               name="num_comp_worked">
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text">
-              Monthly Income&emsp;&emsp;&emsp;&ensp;
+              Monthly Income&emsp;&emsp;&ensp;
             </span>
-            <input type="number" min="0" placeholder="Enter monthly income in USD (e.g. 4000)" class="form-control"
+            <input type="number" min="0" placeholder="Enter monthly income in USD (e.g., 4000)" class="form-control"
               aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="monthly_income">
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text">
-              Work Life Balance&emsp;&emsp;&ensp;&nbsp;
+              Work Life Balance&emsp;&ensp;&nbsp;
             </span>
             <select class="form-select" aria-label="Default select example" name="work_life_balance">
-              <option selected>--- Choose Work Life Balance ---</option>
+              <option selected>--- Select Work Life Balance ---</option>
               <option value="4">Best</option>
               <option value="3">Better</option>
               <option value="2">Good</option>
@@ -531,9 +580,9 @@
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text">
-              Years at Company&emsp;&emsp;&ensp;&nbsp;
+              Years at Company&emsp;&ensp;&nbsp;
             </span>
-            <input type="number" min="0" max="100" placeholder="Enter current years of service in IBM (e.g. 2)"
+            <input type="number" min="0" max="100" placeholder="Enter current years of service in IBM (e.g., 2)"
               class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
               name="years_at_company">
           </div>
