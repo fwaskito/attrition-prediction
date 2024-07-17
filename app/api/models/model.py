@@ -48,7 +48,7 @@ class Employee:
 
 class EmployeeHistory:
     def get_employee_histories(self):
-        query = "get_employees_history"
+        query = "get_employee_histories"
         conn = Database().get_connection()
         cursor = conn.cursor(cursor_factory=RealDictCursor)
         cursor.callproc(query)
