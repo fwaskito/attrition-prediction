@@ -1,7 +1,7 @@
 from app.api.models.database import Database
 
 
-def generate_id():
+def generate_id() -> str:
     conn = Database().get_connection()
     cursor = conn.cursor()
 
@@ -26,3 +26,51 @@ def generate_id():
         new_num_id = int(max_id) + 1
 
     return f"EP{new_num_id}"
+
+
+def tostring_ordinal(key: str, value: int) -> str:
+    attributes = {
+        "education": {
+            1: "Bellow College",
+            2: "College",
+            3: "Bachelor",
+            4: "Master",
+            5: "Doctor",
+        },
+        "env_satisfaction": {
+            1: "Low",
+            2: "Medium",
+            3: "High",
+            4: "Very High",
+        },
+        "job_satisfaction": {
+            1: "Low",
+            2: "Medium",
+            3: "High",
+            4: "Very High",
+        },
+        "work_life_balance": {
+            1: "Bad",
+            2: "Good",
+            3: "Better",
+            4: "Best",
+        },
+    }
+
+    return attributes[key][value]
+
+
+def convert_attribute(data_list: list) -> None:
+    keys = [
+        "education",
+        "env_satisfaction",
+        "job_satisfaction",
+        "work_life_balance",
+    ]
+
+    for data in data_list:
+        for key in keys:
+            data[key] = tostring_ordinal(
+                key,
+                data[key],
+            )
