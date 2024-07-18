@@ -2,16 +2,73 @@
 {% block title %}Attrition Prediction System{% endblock %}
 {% block content %}
 <div class="container-fluid">
-  <div class="row m-4 p-4">
-    <div class="col-md-5 col-8">
+  <div class="row m-5 p-0">
+    <div class="col-12">
       <div class="row align-self-center">
-        <div class="col-12 ">
-          <h4 class="fw-bold display-6">Attrition Prediction System</h4>
-          <a class="btn btn-lg btn-outline-primary mt-4" href="{{ url_for('api.login') }}" role="button">Login</a>
-          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="col-8 p-4">
+          <!---Carousel--->
+          <div id="carouselExampleFade" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-bs-interval="4000">
+                <img src="{{ url_for('static', filename='assets/img/screenshot-1.png') }}" class="d-block w-100"
+                  alt="...">
+                <div class="carousel-caption d-none d-md-block bg-dark text-white bg-opacity-50">
+                  <h5>Employees Data</h5>
+                  <p>Integrated employees data from database.</p>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <img src="{{ url_for('static', filename='assets/img/screenshot-2.png') }}" class="d-block w-100"
+                  alt="...">
+                <div class="carousel-caption d-none d-md-block bg-dark text-white bg-opacity-50">
+                  <h5>Edit Data</h5>
+                  <p>Edit employee data to provide test data for prediction.</p>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <img src="{{ url_for('static', filename='assets/img/screenshot-3.png') }}" class="d-block w-100"
+                  alt="...">
+                <div class="carousel-caption d-none d-md-block bg-dark text-white bg-opacity-50">
+                  <h5>Employee Histories Data</h5>
+                  <p>Track some changes from employees data in histoy.</p>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="4000">
+                <img src="{{ url_for('static', filename='assets/img/screenshot-4.png') }}" class="d-block w-100"
+                  alt="...">
+                <div class="carousel-caption d-none d-md-block bg-dark text-white bg-opacity-50">
+                  <h5>Prediction</h5>
+                  <p>Make prediction for available dataset and get insight for there.</p>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          <!---CLose Carousel--->
+        </div>
+        <div class="col-4 p-5">
+          <div class="row">
+            <div class="col-12 p-5">
+              <h4 class="fw-bold display-6 text-white">Get Started</h4>
+              <p class="text-white">
+                Attrition Prediction System
+              </p>
+              <a class="btn btn-lg btn-primary mt-4" href="{{ url_for('api.login') }}" role="button">Login</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <br><br>
 </div>
 {% endblock %}
