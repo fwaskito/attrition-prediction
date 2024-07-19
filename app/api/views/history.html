@@ -7,9 +7,10 @@
       <div class="data_table">
         <div class="row align-items-end">
           <div class="p-2 col-md-2 col-4">
-            <small><b>User</b>: {{session.get('user')['name']}}</small></br>
-            <small><b>Role</b>: {{session.get('user')['role']}}</small>
-            <hr>
+            <button class="btn btn-outline-primary btn-sm shadow-sm" id="btn-show-all-children" type="button">
+              Expand All</button>
+            <button class="btn btn-sm btn-outline-danger shadow-sm" id="btn-hide-all-children" type="button">
+              Collapse All</button>
           </div>
           <div class="col text-center">
             <h4><b>Employee Histories Data</b></h4>
@@ -31,7 +32,7 @@
         <div class="row">
           <div class="col-12">
             <small>Export to:</small>
-            <table id="example" class="table table-responsive border table-hover shadow-lg" width="100%">
+            <table id="dataTable" class="table table-responsive border table-hover shadow-lg" width="100%">
               <thead>
                 <tr>
                   <th>ID</th>
