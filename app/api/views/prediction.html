@@ -44,7 +44,7 @@
                   <th>Attrition Prediction</th>
                   <th>Age</th>
                   <th>Department</th>
-                  <th>Dist. from Home</th>
+                  <th>Dist. from Home (KM)</th>
                   <th>Education</th>
                   <th class="none">
                     <div style="margin-right: 45px;">Education Field</div>
@@ -62,7 +62,7 @@
                     <div style="margin-right: 12px;">Num. Comp. worked</div>
                   </th>
                   <th class="none">
-                    <div style="margin-right: 37px;">Monthly Income</div>
+                    <div style="margin-right: 19px;">Monthly Income ($)</div>
                   </th>
                   <th class="none">
                     <div style="margin-right: 27px;">Work Life Balance</div>
@@ -122,14 +122,14 @@
                   {% endif %}
                   <td>{{employee.age}}</td>
                   <td>{{employee.department}}</td>
-                  <td>{{employee.dist_from_home}} km</td>
+                  <td>{{employee.dist_from_home}}</td>
                   <td>{{employee.education}}</td>
                   <td>{{employee.education_field}}</td>
                   <td>{{employee.env_satisfaction}}</td>
                   <td>{{employee.job_satisfaction}}</td>
                   <td>{{employee.marital_status}}</td>
                   <td>{{employee.num_comp_worked}}</td>
-                  <td>${{employee.monthly_income}}</td>
+                  <td>{{employee.monthly_income}}</td>
                   <td>{{employee.work_life_balance}}</td>
                   <td>{{employee.years_at_company}}</td>
                 </tr>

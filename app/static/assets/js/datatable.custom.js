@@ -1,7 +1,30 @@
 $(document).ready(function (){
+	var employeeCols = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
+
 	var table = $('#dataTable').DataTable({
 		dom: 'Bfrtip',
-		buttons: ['csv', 'excel', 'pdf'],
+		buttons : [
+			{
+				extend: 'csvHtml5',
+				exportOptions: {
+					columns: employeeCols
+				}
+			},
+			{
+				extend: 'excelHtml5',
+				exportOptions: {
+					columns: employeeCols
+				}
+			},
+			{
+				extend: 'pdfHtml5',
+				orientation: 'landscape',
+				pageSize: 'LEGAL',
+				exportOptions: {
+					columns: employeeCols
+				}
+			}
+		],
 		responsive: true
 	});
 
