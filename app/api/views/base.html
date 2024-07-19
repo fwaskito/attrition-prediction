@@ -166,6 +166,23 @@
   </div>
   <!----- Close Page Content ----->
 
+  <!----- Toast ----->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="{{page}}Toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true"
+      data-bs-autohide="false">
+      <div class="toast-header bg-primary text-white">
+        <!-- <img src="..." class="rounded me-2" alt="..."> -->
+        <i class="fa-solid fa-robot"></i>
+        <strong class="me-auto">&ensp;Welcome!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        To try this app, please see the <a href="/guide">guide</a>.
+      </div>
+    </div>
+  </div>
+  <!----- Close Toast ----->
+
   <!----- Scripts ----->
   {% block scripts %}
   <script type="text/javascript"
