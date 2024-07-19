@@ -2,6 +2,9 @@ $(document).ready(function(){
 	setTimeout(function() {
 		$('#messageModal').modal('show');
 	}, 1000);
+	setTimeout(function() {
+		$('#mainToast').toast('show');
+	}, 1500);
 });
 
 $(window).on("load", function() {
@@ -11,3 +14,7 @@ $(window).on("load", function() {
 	$('.history-page-content').fadeIn(1500);
 	$('.prediction-page-content').fadeIn(1000);
 });
+
+const scrollSpy = new bootstrap.ScrollSpy(document.body, {
+	target: '#guideNavbar'
+  })

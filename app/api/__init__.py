@@ -7,3 +7,4 @@ from app.api.controllers import authentication
 from app.api.controllers import employee
 from app.api.controllers import employee_history
 from app.api.controllers import prediction
+from app.api.controllers import guide
