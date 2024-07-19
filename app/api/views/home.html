@@ -32,16 +32,32 @@
                   <th>Attrition</th>
                   <th>Age</th>
                   <th>Department</th>
-                  <th>DFH</th>
+                  <th>Dist. from Home</th>
                   <th>Education</th>
-                  <th>Education Field</th>
-                  <th>Env. Satisfaction</th>
-                  <th>Job Satisfaction</th>
-                  <th>Marital Status</th>
-                  <th>Num. Company worked</th>
-                  <th>Salary</th>
-                  <th>WLB</th>
-                  <th>Years at Company</th>
+                  <th class="none">
+                    <div style="margin-right: 45px;">Education Field</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 38px;">Env. Satisfaction</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 43px;">Job Satisfaction</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 52px;">Marital Status</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 12px;">Num. Comp. worked</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 37px;">Monthly Income</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 27px;">Work Life Balance</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 27px;">Years at Company</div>
+                  </th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -51,15 +67,15 @@
                   <th>Attrition</th>
                   <th>Age</th>
                   <th>Department</th>
-                  <th>DFH</th>
+                  <th>Dist. from Home</th>
                   <th>Education</th>
                   <th>Education Field</th>
                   <th>Env. Satisfaction</th>
                   <th>Job Satisfaction</th>
                   <th>Marital Status</th>
-                  <th>Num. Company worked</th>
-                  <th>Salary</th>
-                  <th>WLB</th>
+                  <th>Num. Comp. worked</th>
+                  <th>Monthly Income</th>
+                  <th>Work Life Balance</th>
                   <th>Years at Company</th>
                   <th>Action</th>
                 </tr>
@@ -82,7 +98,7 @@
                   <td>{{employee['job_satisfaction']}}</td>
                   <td>{{employee['marital_status']}}</td>
                   <td>{{employee['num_comp_worked']}}</td>
-                  <td>{{employee['monthly_income']}}</td>
+                  <td>${{employee['monthly_income']}}</td>
                   <td>{{employee['work_life_balance']}}</td>
                   <td>{{employee['years_at_company']}}</td>
                   <td class="table table-light">
@@ -137,7 +153,7 @@
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Department&emsp;&emsp;&emsp;&emsp;&ensp;
+                              Department&emsp;&emsp;&emsp;&emsp;&nbsp;
                             </span>
                             <select class="form-select" aria-label="Default select example" name="department_id">
                               {% if employee['department'] == 'Research & Development' %}
@@ -337,7 +353,7 @@
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Monthly Income&emsp;&emsp;&ensp;
+                              Monthly Income ($)&emsp;&nbsp;
                             </span>
                             <input type="number" min="0" class="form-control" aria-label="Sizing example input"
                               aria-describedby="inputGroup-sizing-default" name="monthly_income"
@@ -345,7 +361,7 @@
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Work Life Balance&emsp;&ensp;&nbsp;
+                              Work Life Balance&emsp;&ensp;&ensp;
                             </span>
                             <select class="form-select" aria-label="Default select example" name="work_life_balance">
                               {% if employee['work_life_balance'] == 'Best' %}
@@ -373,7 +389,7 @@
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Years at Company&emsp;&ensp;&nbsp;
+                              Years at Company&emsp;&ensp;&ensp;
                             </span>
                             <input type="number" min="0" max="100" class="form-control"
                               aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"

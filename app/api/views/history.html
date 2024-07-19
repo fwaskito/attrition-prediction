@@ -39,36 +39,52 @@
                   <th>Modif. Date</th>
                   <th>Attrition</th>
                   <th>Age</th>
-                  <th>Depart.</th>
-                  <th>DFH</th>
+                  <th>Department</th>
+                  <th>Dist. from Home</th>
                   <th>Education</th>
-                  <th>Education Field</th>
-                  <th>Env. Satisfaction</th>
-                  <th>Job Satisfaction</th>
-                  <th>Marital Status</th>
-                  <th>Num. Company Worked</th>
-                  <th>Salary</th>
-                  <th>WLB</th>
-                  <th>Years at Company</th>
+                  <th class="none">
+                    <div style="margin-right: 45px;">Education Field</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 38px;">Env. Satisfaction</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 43px;">Job Satisfaction</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 52px;">Marital Status</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 12px;">Num. Comp. worked</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 37px;">Monthly Income</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 27px;">Work Life Balance</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 27px;">Years at Company</div>
+                  </th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
                   <th>ID</th>
-                  <th>Modification Action</th>
-                  <th>Modification Date</th>
+                  <th>Modif. Action</th>
+                  <th>Modif. Date</th>
                   <th>Attrition</th>
                   <th>Age</th>
-                  <th>Depart.</th>
-                  <th>DFH</th>
+                  <th>Department</th>
+                  <th>Dist. from Home</th>
                   <th>Education</th>
                   <th>Education Field</th>
                   <th>Env. Satisfaction</th>
                   <th>Job Satisfaction</th>
                   <th>Marital Status</th>
-                  <th>Num. Company Worked</th>
-                  <th>Salary</th>
-                  <th>WLB</th>
+                  <th>Num. Comp. Worked</th>
+                  <th>Monthly Income</th>
+                  <th>Work Life Balance</th>
                   <th>Years at Company</th>
                 </tr>
               </tfoot>
@@ -102,7 +118,7 @@
                   <td>{{employee['job_satisfaction']}}</td>
                   <td>{{employee['marital_status']}}</td>
                   <td>{{employee['num_comp_worked']}}</td>
-                  <td>{{employee['monthly_income']}}</td>
+                  <td>${{employee['monthly_income']}}</td>
                   <td>{{employee['work_life_balance']}}</td>
                   <td>{{employee['years_at_company']}}</td>
                 </tr>
