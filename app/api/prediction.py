@@ -68,7 +68,7 @@ def predict():
         predictions_sess = session.get("predictions")
         predictions_sess[id_] = predictions[id_]
         session["predictions"] = predictions_sess
-        flash("1 employee sucessfully predicted.")
+        flash("1 employee successfully predicted.")
 
         return render_template("prediction.html", test_data=test_data)
 
@@ -97,32 +97,24 @@ def predict():
         predictions_sess[id_] = predictions[id_]
 
     session["predictions"] = predictions_sess
-
-    if len(test_id) > 1:
-        flash(str(len(test_id)) + " employees sucessfully predicted.")
-    else:
-        flash(str(len(test_id)) + " employee sucessfully predicted.")
+    flash(str(len(test_id)) + " employee successfully predicted.")
 
     return render_template("prediction.html", test_data=test_data)
 
 
-@bp.route("/prediction/save", methods=["POST"])
-def save_prediction():
-    predictions_sess = session.get("predictions")
-    predicted_id = predictions_sess.keys()
-
-    query = "set_employee_attrition"
+@bp.route("/prediction/reset", methods=["POST"])
+def reset_prediction():
+    query = "reset_test_data"
     conn = db().get_connection()
     cursor = conn.cursor()
 
-    for id_ in predicted_id:
-        cursor.callproc(query, [id_, predictions_sess[id_]])
-        conn.commit()
+    cursor.callproc(query)
+    conn.commit()
 
     cursor.close()
     conn.close()
 
-    flash(str(len(predicted_id)) + " prediction data sucessfully saved.")
+    flash("All prediction data successfully reset.")
     session.pop("predictions", None)
 
     return redirect(url_for("api.prediction"))
