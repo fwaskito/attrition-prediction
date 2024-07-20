@@ -13,7 +13,7 @@ def login():
             username = form.username.data
             password = form.password.data
 
-            query = "select * from sppk.user where username='" + username + "';"
+            query = "select * from sys_user where username='" + username + "';"
             conn = Database().get_connection()
             cursor = conn.cursor(cursor_factory=RealDictCursor)
             cursor.execute(query)
