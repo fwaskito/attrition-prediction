@@ -1,7 +1,7 @@
-from flask import session, render_template, redirect, url_for, flash
-from psycopg2.extras import RealDictCursor
-from app.models.database import Database
+from flask import session
+from flask import render_template, redirect, url_for, flash
 from app.forms import SigninForm
+from app.api.models.model import User
 from app.api import bp
 
 
@@ -12,23 +12,18 @@ def login():
         try:
             username = form.username.data
             password = form.password.data
+            user = User().get_user(username)
 
-            query = "select * from sys_user where username='" + username + "';"
-            conn = Database().get_connection()
-            cursor = conn.cursor(cursor_factory=RealDictCursor)
-            cursor.execute(query)
-            data = cursor.fetchall()
-
-            if len(data) > 0:
-                if str(data[0]["password"]) == str(password):
-                    session["user"] = data[0]
+            if len(user) > 0:
+                if str(user[0]["password"]) == str(password):
+                    session["user"] = user[0]
                     return redirect(url_for("api.employees"))
-                else:
-                    flash("Password invalid!")
-                    return render_template("login.html", form=form, page="login")
-            else:
-                flash("Username invalid!")
+
+                flash("Password invalid!")
                 return render_template("login.html", form=form, page="login")
+
+            flash("Username invalid!")
+            return render_template("login.html", form=form, page="login")
 
         except Exception as e:
             print("Execption: ", e)
@@ -42,4 +37,5 @@ def logout():
     session.pop("user", None)
     session.pop("predictions", None)
     session.pop("new_id", None)
+
     return redirect(url_for("api.main"))

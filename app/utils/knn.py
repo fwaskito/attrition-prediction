@@ -1,14 +1,15 @@
 from math import sqrt
 from collections import Counter
-import pandas as pd
+from numpy import ndarray
+from pandas import DataFrame
 
 
 class KnnClassifier:
     def __init__(self, k: int):
-        self.k = k
-        self.X_train: pd.DataFrame = None
-        self.y_train: pd.DataFrame = None
-        self.X_test: pd.DataFrame = None
+        self.k: int = k
+        self.X_train: ndarray = None
+        self.X_test: ndarray = None
+        self.y_train: DataFrame = None
 
     def get_euclidean_dist(self, a, b):
         sum_of_square = 0
@@ -39,7 +40,7 @@ class KnnClassifier:
                 dist = self.get_euclidean_dist(test_point, train_point)
                 distances.append(dist)
 
-            distances_df = pd.DataFrame(
+            distances_df = DataFrame(
                 data=distances, columns=["dist"], index=self.y_train.index
             )
 
@@ -57,7 +58,7 @@ class KnnClassifier:
 
         return y_predict
 
-    def fit(self, X_train, y_train, X_test):
+    def fit(self, X_train, X_test, y_train):
         self.X_train = X_train
         self.y_train = y_train
         self.X_test = X_test

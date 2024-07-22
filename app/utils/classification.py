@@ -1,13 +1,13 @@
-import pandas as pd
-from sklearn.preprocessing import StandardScaler
+from pandas import DataFrame
+from app.utils.scaler import StandardScaler
 from app.utils.knn import KnnClassifier
 
 
 class Classifier:
     def __init__(self):
         self.k: int = 7
-        self.train_df: pd.DataFrame = None
-        self.test_df: pd.DataFrame = None
+        self.train_df: DataFrame = None
+        self.test_df: DataFrame = None
         self.test_id: list[str] = None
 
     def _encode_attribute(self):
@@ -36,23 +36,23 @@ class Classifier:
         self._encode_attribute()
 
         # Separate target attribute
-        X_train = self.train_df.drop("attrition", axis=1)
+        X_train = self.train_df.drop("attrition", axis=1).to_numpy()
         y_train = self.train_df.attrition
-        X_test = self.test_df.drop("attrition", axis=1)
+        X_test = self.test_df.drop("attrition", axis=1).to_numpy()
 
         # Scaling
         scaler = StandardScaler()
         X_train = scaler.fit_transform(X_train)
         X_test = scaler.transform(X_test)
 
-        return X_train, y_train, X_test
+        return X_train, X_test, y_train
 
     def predict(self):
-        X_train, y_train, X_test = self._prepare()
+        X_train, X_test, y_train = self._prepare()
 
         # Classification process
         classifier = KnnClassifier(self.k)
-        classifier.fit(X_train, y_train, X_test)
+        classifier.fit(X_train, X_test, y_train)
         predict_labels = classifier.predict()
 
         # Map all prediction results to a dictionary

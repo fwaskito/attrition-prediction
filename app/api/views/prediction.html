@@ -8,7 +8,7 @@
         <div class="row align-items-end">
           <div class="p-2 ps-3 col-md-2 col-4">
             <small><b>User</b>: {{session.get('user')['name']}}</small></br>
-            <small><b>Role</b>: {{session.get('user')['type']}}</small>
+            <small><b>Role</b>: {{session.get('user')['role']}}</small>
             <hr>
           </div>
           <div class="col text-center">
@@ -18,13 +18,13 @@
           <div class="col-3 d-flex justify-content-end">
             <div class="row">
               <div class="col">
-                <form action="/prediction/predict" method="POST">
+                <form action="/predictions/predict" method="POST">
                   <input type="hidden" name="predict_type" value="many">
                   <input class="btn btn-primary btn-sm shadow-sm" type="submit" value="Predict All">
                 </form>
               </div>
               <div class="col">
-                <form action="/prediction/reset" method="POST">
+                <form action="/predictions/reset" method="POST">
                   <input type="hidden" name="predict_type" value="reset">
                   <input class="btn btn-secondary btn-sm shadow-sm" type="submit" value="Reset Prediction Data">
                 </form>
@@ -87,7 +87,7 @@
                   {% endif %}
                   {% else %}
                   <td>
-                    <form action="/prediction/predict" method="POST">
+                    <form action="/predictions/predict" method="POST">
                       <input type="hidden" name="predict_type" value="single">
                       <input type="hidden" name="id" value="{{employee.id}}">
                       <input class="btn btn-outline-primary btn-sm" type="submit" value="Predict">
@@ -96,7 +96,7 @@
                   {% endif %}
                   {% else %}
                   <td>
-                    <form action="/prediction/predict" method="POST">
+                    <form action="/predictions/predict" method="POST">
                       <input type="hidden" name="predict_type" value="single">
                       <input type="hidden" name="id" value="{{employee.id}}">
                       <input class="btn btn-outline-primary btn-sm" type="submit" value="Prediksi">
@@ -104,17 +104,17 @@
                   </td>
                   {% endif %}
                   <td>{{employee.age}}</td>
-                  <td>{{employee.department_name}}</td>
+                  <td>{{employee.department}}</td>
                   <td>{{employee.dist_from_home}} km</td>
-                  <td>{{employee.edu}}</td>
-                  <td>{{employee.edu_field}}</td>
-                  <td>{{employee.env_sat}}</td>
-                  <td>{{employee.job_sat}}</td>
-                  <td>{{employee.marital_sts}}</td>
+                  <td>{{employee.education}}</td>
+                  <td>{{employee.education_field}}</td>
+                  <td>{{employee.env_satisfaction}}</td>
+                  <td>{{employee.job_satisfaction}}</td>
+                  <td>{{employee.marital_status}}</td>
                   <td>{{employee.num_comp_worked}}</td>
-                  <td>{{employee.salary}}</td>
-                  <td>{{employee.wlb}}</td>
-                  <td>{{employee.years_at_comp}}</td>
+                  <td>{{employee.monthly_income}}</td>
+                  <td>{{employee.work_life_balance}}</td>
+                  <td>{{employee.years_at_company}}</td>
                 </tr>
                 {% endfor %}
                 {% endwith %}
