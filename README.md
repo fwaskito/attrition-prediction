@@ -104,5 +104,12 @@ Variables as above are temporary. So we need to re-set them every time we change
 > [!TIP]
 > Optionally, we can create aliases for several commands in Bash or PowerShell to increase the efficiency of repeated use. So, we can set all variables with a simple command (e.g., `exportenv`).
 
+## Usage
+Go to the [demo](https://attrition-prediction.vercel.app/) to try out this system.
+
+Use this identity to login.
+- Username: fwaskito
+- Password: fwaskito123
+
 ## License
 The source code of this system is under the [BSD 2-Clause](https://choosealicense.com/licenses/bsd-2-clause) license.
