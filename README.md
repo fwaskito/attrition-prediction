@@ -14,7 +14,7 @@ The raw data used to provide employee data and design the database schema is the
 - [**PostgreSQL**](https://www.postgresql.org) &mdash; Relational database
 
 ### Dependencies
-[![Badge](https://img.shields.io/badge/flask-v3.0.3-blue)](https://pypi.org/project/Flask) [![Badge](https://img.shields.io/badge/flask--WTF-v1.2.1-blue)](https://pypi.org/project/Flask-WTF) [![Static Badge](https://img.shields.io/badge/pandas-v2.2.2-blue)](https://pypi.org/project/pandas) [![Static Badge](https://img.shields.io/badge/psycopg2--binary-v2.9.9-blue)](https://pypi.org/project/psycopg2-binary) [![Static Badge](https://img.shields.io/badge/scikit--learn-v1.5.1-blue)](https://pypi.org/project/scikit-learn) [![Static Badge](https://img.shields.io/badge/WTForms-v3.1.2-blue)](https://pypi.org/project/WTForms)
+[![Static Badge](https://img.shields.io/badge/flask-v3.0.3-blue)](https://pypi.org/project/Flask) [![Badge](https://img.shields.io/badge/flask--WTF-v1.2.1-blue)](https://pypi.org/project/Flask-WTF) [![Static Badge](https://img.shields.io/badge/pandas-v2.2.2-blue)](https://pypi.org/project/pandas) [![Static Badge](https://img.shields.io/badge/psycopg2--binary-v2.9.9-blue)](https://pypi.org/project/psycopg2-binary) [![Static Badge](https://img.shields.io/badge/WTForms-v3.1.2-blue)](https://pypi.org/project/WTForms)
 
 ## Installation
 ### 1. Install Dependency
@@ -26,23 +26,27 @@ pip install -r requirements.txt
 > Optionally, we can use environment management tools for Python such as Miniconda or Virtualenvwrapper. Using the same commands as above, install the dependencies in a centralized environment instead of a local one, for a more organized way of working.
 
 ### 2. Import Database
+Create a new database. Then import this system database into your newly created database.
+```sql
+CREATE DATABASE new_database;
+```
 Basic psql import command with implicit user (postgres)
 ```bash
-psql database_name < backup_file.bak
+psql new_database < attrition_prediction.bak
 ```
 or with specific user.
 ```bash
-psql -U user_name -W -d database_name -f backup_file.bak
+psql -U user_name -W -d new_database -f attrition_prediction.bak
 ```
 > [!NOTE]
-> Location of database backup files in the project: `app/models/backup/*`.
+> Location of database backup files in the project: `app/api/models/backup/*`.
 
 > [!TIP]
 > If using a remote database, replace `database_name` with `database_URL` instead.
 ### 3. Add New User to Database
 ```sql
 INSERT INTO sys_user
-VALUES ('US3', 'Your Name', 'admin', 'your_username', 'your_password');
+VALUES ('US2', 'Your Name', 'admin', 'your_username', 'your_password');
 ```
 ### 4. Set Necessary Environment Variables
 
@@ -59,7 +63,7 @@ There are several environment variables that are used as configuration when the 
 
 Set environment variables on Linux using Bash.
 ```bash
-export FLASK_APP="app"
+export FLASK_APP="app/app.py"
 ```
 ```bash
 export SECRET_KEY="create your own key"
@@ -78,7 +82,7 @@ export POSTGRES_PASSWORD="your_password"
 ```
 Set environment variables on Windows using PowerShell.
 ```pwsh
-$Env:FLASK_APP="app"
+$Env:FLASK_APP="app/app.py"
 ```
 ```pwsh
 $Env:SECRET_KEY="create your own key"
