@@ -3,7 +3,8 @@
 {% block content %}
 <div class="mt-4 mb-4 container">
   <div class="row justify-content-md-center p-4">
-    <div class="col-md-4 col-8 border shadow p-4" style="background-color: #EEEEEE;">
+    <!----- Form Box ------->
+    <div class="col-md-4 col-8 border shadow-lg p-4" style="background-color:#ffffff;">
       <div class="row mt-4 mb-4">
         <div class="col-12">
           <div class="text-center text-md-center mb-4">
@@ -13,7 +14,7 @@
             <br />
             <br>
             <span class="font-weight-normal">
-              {% for massage in get_flashed_messages() %}
+              {% for massage in get_flashed_messages() %}e
               <div class="alert alert-warning">
                 {{ massage }}
               </div>
@@ -24,7 +25,6 @@
       </div>
       <div class="row m-2">
         <div class="col-12">
-          <!-----Form------->
           <form method="POST" action="">
             {{ form.hidden_tag() }}
             <div class="form-group mb-4">
@@ -45,6 +45,8 @@
         </div>
       </div>
     </div>
+    <!----- CLose Form Box ------->
   </div>
+  <br><br>
 </div>
 {% endblock %}

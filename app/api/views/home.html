@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Employee Data{% endblock %}
+{% block title %}Employees Data{% endblock %}
 {% block content %}
 <div class="container-fluid">
   <div class="row mb-4">
@@ -7,17 +7,17 @@
       <div class="data_table">
         <div class="row align-items-end">
           <div class="p-2 ps-3 col-md-2 col-4">
-            <small><b>User</b>: {{session.get('user')['name']}}</small></br>
-            <small><b>Role</b>: {{session.get('user')['role']}}</small>
-            <hr>
+            <button class="btn btn-outline-primary btn-sm shadow-sm" id="btn-show-all-children" type="button">
+              Expand All</button>
+            <button class="btn btn-sm btn-outline-danger shadow-sm" id="btn-hide-all-children" type="button">
+              Collapse All</button>
           </div>
           <div class="col text-center">
-            <h4><b>Employee Data</b></h4>
+            <h4><b>Employees Data</b></h4>
           </div>
 
           <div class="col-md-2 col-4 d-flex justify-content-end">
-            <a class="editMuch btn btn-outline-primary" type="button" title="Add data karyawan" data-bs-toggle="modal"
-              data-bs-target="#addModal">
+            <a class="editMuch btn btn-sm btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#addModal">
               <i class="fa-solid fa-user-plus"></i> Add Employee
             </a>
           </div>
@@ -26,23 +26,39 @@
         <div class="row">
           <div class="col-12">
             <small>Export to:</small>
-            <table id="example" class="table table-responsive border table-hover shadow-lg" width="100%">
+            <table id="employeesDataTable" class="table table-responsive border table-hover shadow-lg" width="100%">
               <thead>
                 <tr>
                   <th>ID</th>
                   <th>Attrition</th>
                   <th>Age</th>
                   <th>Department</th>
-                  <th>DFH</th>
+                  <th>Dist. from Home (KM)</th>
                   <th>Education</th>
-                  <th>Education Field</th>
-                  <th>Env. Satisfaction</th>
-                  <th>Job Satisfaction</th>
-                  <th>Marital Status</th>
-                  <th>Num. Company worked</th>
-                  <th>Salary</th>
-                  <th>WLB</th>
-                  <th>Years at Company</th>
+                  <th class="none">
+                    <div style="margin-right: 45px;">Education Field</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 38px;">Env. Satisfaction</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 43px;">Job Satisfaction</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 52px;">Marital Status</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 12px;">Num. Comp. worked</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 19px;">Monthly Income ($)</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 27px;">Work Life Balance</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 27px;">Years at Company</div>
+                  </th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -52,15 +68,15 @@
                   <th>Attrition</th>
                   <th>Age</th>
                   <th>Department</th>
-                  <th>DFH</th>
+                  <th>Dist. from Home</th>
                   <th>Education</th>
                   <th>Education Field</th>
                   <th>Env. Satisfaction</th>
                   <th>Job Satisfaction</th>
                   <th>Marital Status</th>
-                  <th>Num. Company worked</th>
-                  <th>Salary</th>
-                  <th>WLB</th>
+                  <th>Num. Comp. worked</th>
+                  <th>Monthly Income</th>
+                  <th>Work Life Balance</th>
                   <th>Years at Company</th>
                   <th>Action</th>
                 </tr>
@@ -69,14 +85,10 @@
                 {% for employee in employees %}
                 <tr>
                   <td>{{employee['id']}}</td>
-                  {% if employee['attrition'] == None %}
-                  <td>-</td>
-                  {% else %}
-                  <td><i>{{employee['attrition']}}</i></td>
-                  {% endif %}
+                  <td>{{employee['attrition']}}</td>
                   <td>{{employee['age']}}</td>
                   <td>{{employee['department']}}</td>
-                  <td>{{employee['dist_from_home']}} km</td>
+                  <td>{{employee['dist_from_home']}}</td>
                   <td>{{employee['education']}}</td>
                   <td>{{employee['education_field']}}</td>
                   <td>{{employee['env_satisfaction']}}</td>
@@ -87,11 +99,11 @@
                   <td>{{employee['work_life_balance']}}</td>
                   <td>{{employee['years_at_company']}}</td>
                   <td class="table table-light">
-                    <a class="edit" type="button" title="Edit data" data-bs-toggle="modal"
+                    <a class="edit" type="button" title="Edit Data" data-bs-toggle="modal"
                       data-bs-target="#edit{{employee['id']}}Modal">
                       <i class="fa-solid fa-user-pen"></i>
                     </a>
-                    <a class="delete" type="button" title="Delete data" data-bs-toggle="modal"
+                    <a class="delete" type="button" title="Delete Data" data-bs-toggle="modal"
                       data-bs-target="#delete{{employee['id']}}Modal">
                       <i class="fa-solid fa-user-minus"></i>
                     </a>
@@ -138,7 +150,7 @@
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Department&emsp;&emsp;&emsp;&emsp;&ensp;
+                              Department&emsp;&emsp;&emsp;&emsp;&nbsp;
                             </span>
                             <select class="form-select" aria-label="Default select example" name="department_id">
                               {% if employee['department'] == 'Research & Development' %}
@@ -338,7 +350,7 @@
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Monthly Income&emsp;&emsp;&ensp;
+                              Monthly Income ($)&emsp;&nbsp;
                             </span>
                             <input type="number" min="0" class="form-control" aria-label="Sizing example input"
                               aria-describedby="inputGroup-sizing-default" name="monthly_income"
@@ -346,7 +358,7 @@
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Work Life Balance&emsp;&ensp;&nbsp;
+                              Work Life Balance&emsp;&ensp;&ensp;
                             </span>
                             <select class="form-select" aria-label="Default select example" name="work_life_balance">
                               {% if employee['work_life_balance'] == 'Best' %}
@@ -374,7 +386,7 @@
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">
-                              Years at Company&emsp;&ensp;&nbsp;
+                              Years at Company&emsp;&ensp;&ensp;
                             </span>
                             <input type="number" min="0" max="100" class="form-control"
                               aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"

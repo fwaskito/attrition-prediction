@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% block title %}Attrition Prediction System{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <h3><b>Guide</b></h3>
+        </div>
+    </div>
+    <div class="row p-5">
+        <div class="col-4">
+            <nav id="guideNavbar" class="h-100 flex-column align-items-stretch pe-4 border-end">
+                <nav class="nav nav-pills flex-column sticky-top">
+                    <a class="nav-link" href="#section-1">1. Dataset</a>
+                    <nav class="nav nav-pills flex-column">
+                        <a class="nav-link ms-3 my-1" href="#section-1-1">1.1 Training Data</a>
+                        <a class="nav-link ms-3 my-1" href="#section-1-2">1.2 Test Data</a>
+                    </nav>
+                    <a class="nav-link" href="#section-2">2. Login</a>
+                    <a class="nav-link" href="#section-3">3. Employee Data Page</a>
+                    <nav class="nav nav-pills flex-column">
+                        <a class="nav-link ms-3 my-1" href="#section-3-1">3.1 Edit Data (Provide Test Data)</a>
+                        <a class="nav-link ms-3 my-1" href="#section-3-2">3.2 Delete Data</a>
+                        <a class="nav-link ms-3 my-1" href="#section-3-3">3.3 Add Data</a>
+                    </nav>
+                    <a class="nav-link" href="#section-4">4. Employee History Page</a>
+                    <a class="nav-link" href="#section-5">5. Prediction Data Page</a>
+                    <nav class="nav nav-pills flex-column">
+                        <a class="nav-link ms-3 my-1" href="#section-5-1">5.1 Make A Prediction</a>
+                        <a class="nav-link ms-3 my-1" href="#section-5-2">5.2 Reset Prediction Data</a>
+                    </nav>
+                </nav>
+            </nav>
+        </div>
+
+        <div class="col-7">
+            <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true"
+                class="scrollspy-example-2" tabindex="0">
+                <div id="section-1" class="row">
+                    <h4>1. Dataset</h4>
+                    <div id="section-1-1" class="row mb-2">
+                        <h5>1.1 Training Data</h5>
+                        <p>
+                            <b>Training data</b> is a combination of all employee data samples with a non-null attrition
+                            attribute and all employee data history. The training data has two target classes: “no” and
+                            "yes". The details are as follows:
+                        <table class="table border ms-3">
+                            <thead class="table" style="background-color: #C7C7C7;">
+                                <tr>
+                                    <th>Class (Attrition Value)</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        no
+                                    </td>
+                                    <td>
+                                        employee data samples with non-null attrition attribute values +
+                                        employee history data samples whose attrition attribute value is “no”.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        yes
+                                    </td>
+                                    <td>
+                                        employee history data samples whose the attrition attribute value is “yes”.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </p>
+                    </div>
+                    <div id="section-1-2" class="row mb-2">
+                        <h5>1.2 Test Data</h5>
+                        <p>
+                            <b>Test data</b> are samples of employee data where the attribute value is null. This is
+                            explained in more detail in <a href="#section-3-1">Section 3.1</a>.
+                        </p>
+                    </div>
+                </div>
+                <div id="section-2" class="row  mt-4">
+                    <h4>2. Login</h4>
+                    <p>
+                        Use this identity to <b>log in</b> to the system.
+                    <ul class="ms-4">
+                        <li><b>Username:</b> fwaskito</li>
+                        <li><b>Password:</b> fwaskito123</li>
+                    </ul>
+                    </p>
+                </div>
+                <div id="section-3" class="row mt-4">
+                    <h4>3. Employee Data Page</h4>
+                    <div id="section-3-1" class="row mb-2">
+                        <h5>3.1 Edit Data (Provide Test Data)</h5>
+                        <p>
+                            A test data sample can be created by <b>editing</b> one or more attribute values of an
+                            existing employee data sample. This is because, in principle, test data is different (not
+                            identical) from any training data.
+                            <br><br>
+                            An employee data sample that has its value changed will automatically have its attrition
+                            attribute value set to null. Does this mean that the amount of training data will decrease?
+                            It doesn't. This is because each data sample is stored as employee data history data when a
+                            change action (update or delete) is performed on it.
+                        </p>
+                    </div>
+                    <div id="section-3-2" class="row mb-2">
+                        <h5>3.2 Delete Data</h5>
+                        <p>
+                            A <b>deleted</b> employee data sample will automatically have its attrition attribute value
+                            changed from "no" to "yes". After that, the data disappears from the employee data and
+                            becomes the new employee history data.
+                        </p>
+                    </div>
+                    <div id="section-3-3" class="row mb-2">
+                        <h5>3.3 Add Data</h5>
+                        <p>
+                            When a new employee data sample is <b>added</b>, its attribute value is set to "no" by
+                            default.
+                            <br><br>
+                            Why doesn't this new data become new test data? Its attribute values would make it different
+                            from the samples in the training data, right? Yes, it would. But the current functionality
+                            of the system focuses on predicting attrition only for data that is assumed to be available
+                            and integrated with the company's HR database, not for random dummy data.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="section-4" class="row mt-4">
+                    <h4>4. Employee History Data Page</h4>
+                    <p>
+                        <b>Employee history data</b> is employee data that has had an action (update or delete)
+                        performed on it. Any employee history data resulting from an update/edit action can be replaced
+                        by employee history data, with the same employee ID, resulting from a more recent update action.
+                        Therefore, one employee data can generate a minimum of 1 (update) and a maximum of 2 (update and
+                        delete) employee histories.
+                    </p>
+                </div>
+                <div id="section-5" class="row mt-4">
+                    <h4>5. Prediction Data Page</h4>
+                    <div id="section-5-1" class="row mb-2">
+                        <h5>5.1 Make A Prediction</h5>
+                        <p>
+                            There are two options for prediction: <b>predict</b> and <b>predict all</b>. <i>Predict</i>
+                            is single data prediction for one of test data. While <i>predict all</i> is a prediction for
+                            all available test data.
+                        </p>
+                    </div>
+                    <div id="section-5-2" class="row mb-2">
+                        <h5>5.2 Reset Prediction Data</h5>
+                        <p>
+                            <b>Reset prediction data</b> is an action that sets the value of the attrition attribute to
+                            "no" for all test data. As a result, this action will clear all available test data.
+                            <br>
+                        </p>
+                        <div class="col col-12">
+                            <figure class="bg-white rounded" style="border-left: .25rem solid #B9B9B9;">
+                                <blockquote class="p-2">
+                                    <p>
+                                        <b>Note:</b> the prediction action is a temporary action, where the results are
+                                        only stored while the user is logged in and deleted after the user logs out. To
+                                        save the prediction results permanently, we can export the prediction data to a
+                                        document in the available format.
+                                    </p>
+                                </blockquote>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

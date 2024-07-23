@@ -7,9 +7,10 @@
       <div class="data_table">
         <div class="row align-items-end">
           <div class="p-2 col-md-2 col-4">
-            <small><b>User</b>: {{session.get('user')['name']}}</small></br>
-            <small><b>Role</b>: {{session.get('user')['role']}}</small>
-            <hr>
+            <button class="btn btn-outline-primary btn-sm shadow-sm" id="btn-show-all-children" type="button">
+              Expand All</button>
+            <button class="btn btn-sm btn-outline-danger shadow-sm" id="btn-hide-all-children" type="button">
+              Collapse All</button>
           </div>
           <div class="col text-center">
             <h4><b>Employee Histories Data</b></h4>
@@ -31,7 +32,7 @@
         <div class="row">
           <div class="col-12">
             <small>Export to:</small>
-            <table id="example" class="table table-responsive border table-hover shadow-lg" width="100%">
+            <table id="dataTable" class="table table-responsive border table-hover shadow-lg" width="100%">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -39,36 +40,52 @@
                   <th>Modif. Date</th>
                   <th>Attrition</th>
                   <th>Age</th>
-                  <th>Depart.</th>
-                  <th>DFH</th>
+                  <th>Department</th>
+                  <th>Dist. from Home</th>
                   <th>Education</th>
-                  <th>Education Field</th>
-                  <th>Env. Satisfaction</th>
-                  <th>Job Satisfaction</th>
-                  <th>Marital Status</th>
-                  <th>Num. Company Worked</th>
-                  <th>Salary</th>
-                  <th>WLB</th>
-                  <th>Years at Company</th>
+                  <th class="none">
+                    <div style="margin-right: 45px;">Education Field</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 38px;">Env. Satisfaction</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 43px;">Job Satisfaction</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 52px;">Marital Status</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 12px;">Num. Comp. worked</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 19px;">Monthly Income ($)</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 27px;">Work Life Balance</div>
+                  </th>
+                  <th class="none">
+                    <div style="margin-right: 27px;">Years at Company</div>
+                  </th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
                   <th>ID</th>
-                  <th>Modification Action</th>
-                  <th>Modification Date</th>
+                  <th>Modif. Action</th>
+                  <th>Modif. Date</th>
                   <th>Attrition</th>
                   <th>Age</th>
-                  <th>Depart.</th>
-                  <th>DFH</th>
+                  <th>Department</th>
+                  <th>Dist. from Home (KM)</th>
                   <th>Education</th>
                   <th>Education Field</th>
                   <th>Env. Satisfaction</th>
                   <th>Job Satisfaction</th>
                   <th>Marital Status</th>
-                  <th>Num. Company Worked</th>
-                  <th>Salary</th>
-                  <th>WLB</th>
+                  <th>Num. Comp. Worked</th>
+                  <th>Monthly Income</th>
+                  <th>Work Life Balance</th>
                   <th>Years at Company</th>
                 </tr>
               </tfoot>
@@ -95,7 +112,7 @@
                   {% endif %}
                   <td>{{employee['age']}}</td>
                   <td>{{employee['department']}}</td>
-                  <td>{{employee['dist_from_home']}} km</td>
+                  <td>{{employee['dist_from_home']}}</td>
                   <td>{{employee['education']}}</td>
                   <td>{{employee['education_field']}}</td>
                   <td>{{employee['env_satisfaction']}}</td>

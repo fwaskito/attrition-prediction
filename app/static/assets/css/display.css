@@ -1,0 +1,26 @@
+.main-page-content{
+	display: none;
+}
+.login-page-content{
+	display: none;
+}
+.home-page-content{
+	display: none;
+}
+.history-page-content{
+	display: none;
+}
+.prediction-page-content{
+	display: none;
+}
+footer {
+	font-size: 0.8em;
+}
+#mainBody {
+	background: rgb(6,57,112);
+	background: linear-gradient(90deg, rgba(6,57,112,1) 0%, rgba(9,84,165,1) 75%, rgba(11,111,218,1) 100%);
+}
+#loginBody {
+	background: rgb(11,111,218);
+	background: linear-gradient(90deg, rgba(11,111,218,1) 0%, rgba(42,139,244,1) 75%, rgba(95,168,247,1) 100%);
+}
